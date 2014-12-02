@@ -1,0 +1,13 @@
+@mixin dashicon-content($content) {
+        content: $content;
+        display: inline-block;
+        -webkit-font-smoothing: antialiased;
+        font: normal 20px/1 'dashicons';
+        vertical-align: middle;
+}
+
+.dashicon-menu1:after { @include dashicon-content($icon__menu-item1) }
+.dashicon-menu2:after { @include dashicon-content($icon__menu-item2) }
+.dashicon-menu3:after { @include dashicon-content($icon__menu-item3) }
+.dashicon-menu4:after { @include dashicon-content($icon__menu-item4) }
+.dashicon-menu5:after { @include dashicon-content($icon__menu-item5) }

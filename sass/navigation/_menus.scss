@@ -3,6 +3,7 @@
 	display: block;
 	float: left;
 	width: 100%;
+        color: $color__text-menu;
 
 	ul {
 		list-style: none;
@@ -53,6 +54,7 @@
 	a {
 		display: block;
 		text-decoration: none;
+                color: $color__text-menu;
 	}
 
 	.current_page_item > a,

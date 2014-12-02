@@ -120,7 +120,7 @@ require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/extras.php';
 
 /**
- * Customizer additions.
+ * Customizer additions and adjustments.
  */
 require get_template_directory() . '/inc/customizer.php';
 
@@ -128,3 +128,8 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+
+/**
+ * Stylizer that prints css override and governs default values.
+ */
+require get_template_directory() . '/inc/stylizer.php';

@@ -33,4 +33,16 @@
 			}
 		} );
 	} );
+        // Menu text color
+	wp.customize( 'menu_color', function( value ) {
+		value.bind( function( to ) {
+			$( '.main-navigation a' ).css( 'color', to );
+		} );
+	});
+        // Debug test
+	wp.customize( 'menu_color', function( value ) {
+		value.bind( function( to ) {
+			$( 'h1' ).css( 'color', to );
+		} );
+	});
 } )( jQuery );
