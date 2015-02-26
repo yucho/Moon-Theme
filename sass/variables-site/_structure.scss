@@ -1,2 +1,27 @@
-$size__site-main: 100%;
-$size__site-sidebar: 25%;
+$size__site-width-min: 800px;
+$size__site-width-max: 1024px;
+$size__site-height-min: 600px;
+$size__site-height-max: 768px;
+$size__site-branding-title-art: 200px; // Height of title text effect.
+
+$ratio__site-main: 0.701;
+$ratio__site-header: 0.299;
+
+$ratio__site-main-front: 0.618;
+$ratio__site-header-front: 0.382;
+
+$size__site-header-min: $size__site-width-max * $ratio__site-header; // 306px
+$size__site-header-front-min: $size__site-width-min * $ratio__site-header-front; // 306px
+
+/*
+ * Do not modify below unless you know what you're doing.
+ */
+$size__site-main: percentage($ratio__site-main);
+$size__site-main-front: percentage($ratio__site-main-front);
+$size__site-header: percentage($ratio__site-header);
+$size__site-header-front: percentage($ratio__site-header-front);
+$size__site-sidebar: 100%;
+$size__site-main-min: $size__site-width-min - $size__site-header-min; // 494px
+$size__site-main-front-min: $size__site-width-min * $ratio__site-main-front; // 494px
+$size__site-main-max: $size__site-width-max * $ratio__site-main; // 718px
+$size__site-main-front-max: $size__site-width-max * $ratio__site-main-front; // 633px

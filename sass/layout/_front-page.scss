@@ -1,0 +1,48 @@
+/*
+Theme Name  : Moon
+Layout      : Base
+Created on  : 2014/12/23, 22:52:24
+Author      : Yucho
+
+This partial sass contains property values to override _base.scss for
+front-page.php and home.php.
+*/
+
+.front {
+        // Nicolas Gallagher's background color column has wider width on front page.
+        &.site:before {
+                width: $size__site-header-front;
+                min-width: $size__site-header-front-min;
+        }
+
+        .site-header {
+                width: $size__site-header-front;
+                height: 100%;
+                min-width: $size__site-header-front-min;
+        }
+
+        .site-content {
+                position: relative;
+                left: $size__site-header-front;
+                width: $size__site-main-front;
+                min-width: $size__site-main-front-min;
+                max-width: $size__site-main-front-max;
+                padding-top: 2em;
+        }
+
+        @media screen and ( max-width: $size__site-header-front-min / $ratio__site-header-front - 1px ) {
+                .site-content {
+                        left: $size__site-header-front-min;
+                }
+        }
+        
+        .site-main {
+                min-width: $size__site-main-front-min * 0.708;
+        }
+} // .front
+
+.front-canvas {
+        display: block;
+        margin: 0 auto;
+        border: 1px solid black;
+}

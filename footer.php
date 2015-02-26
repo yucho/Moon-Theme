@@ -21,5 +21,11 @@
 
 <?php wp_footer(); ?>
 
+<!-- initialise Superfish -->
+<script>
+	jQuery(document).ready(function(){
+		jQuery('ul.sf-menu').superfish();
+	});
+</script>
 </body>
 </html>

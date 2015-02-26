@@ -1,0 +1,63 @@
+/* 
+Created on : 2014/12/10, 0:43:29
+Author     : Yucho Ho <yuchoho.com>
+
+This file defines overridden values for third-party CSS files so that the
+original files need not be modified.
+*/
+/*
+ * Do not modify below unless you know what you're doing.
+ */
+.main-menu-item {
+  text-align: right; }
+
+.sub-menu-item {
+  text-align: left; }
+
+.primary-menu.sf-menu li.menu-item-even {
+  background: #404040; }
+  .primary-menu.sf-menu li.menu-item-even a {
+    color: #e5e5e5; }
+  .primary-menu.sf-menu li.menu-item-even:hover {
+    color: #e5e5e5;
+    background: #404040;
+    text-decoration: underline; }
+.primary-menu.sf-menu li.menu-item-odd {
+  background: #fff; }
+  .primary-menu.sf-menu li.menu-item-odd a {
+    color: #404040; }
+  .primary-menu.sf-menu li.menu-item-odd:hover {
+    color: #404040;
+    background: #fff;
+    text-decoration: underline; }
+.primary-menu.sf-menu span[class^=dashicon-menu]:after {
+  text-decoration: none; }
+.primary-menu.sf-menu a {
+  border: none; }
+
+.grid-menu.sf-menu {
+  text-align: right; }
+  .grid-menu.sf-menu li.menu-item-even {
+    background: #404040; }
+    .grid-menu.sf-menu li.menu-item-even a {
+      color: #e5e5e5; }
+    .grid-menu.sf-menu li.menu-item-even:hover {
+      color: #e5e5e5;
+      background: #404040;
+      text-decoration: underline; }
+  .grid-menu.sf-menu li.menu-item-odd {
+    background: #fff; }
+    .grid-menu.sf-menu li.menu-item-odd a {
+      color: #404040; }
+    .grid-menu.sf-menu li.menu-item-odd:hover {
+      color: #404040;
+      background: #fff;
+      text-decoration: underline; }
+  .grid-menu.sf-menu span[class^=dashicon-menu]:after {
+    text-decoration: none; }
+  .grid-menu.sf-menu a {
+    border: none; }
+
+/*# sourceMappingURL=overrides.css.map */
+
+/*# sourceMappingURL=overrides.css.map */

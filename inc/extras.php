@@ -87,3 +87,50 @@ function moon_setup_author() {
 	}
 }
 add_action( 'wp', 'moon_setup_author' );
+
+/**
+ * Generates nested divs for golden ratio grid.
+ * Number of rows and columns will be 2^$iter-x and 2^$iter-y.
+ * 
+ * @param integer $iter_x Number of x-grid is 2^$iter_x
+ * @param integer $iter_y Number of y-grid is 2^$iter_y
+ * @return string Nested divs of one's and phi's.
+ */
+function moon_golden_grid( $iter_x, $iter_y, $callback ) {
+        /**
+         * Check sanity of iteration counters.
+         */
+        if( !is_int($iter_x) || !is_int($iter_y) ) {
+                return "Error: input must be an integer type.";
+        }
+
+        /**
+         * Define anonymous function for recursive calls.
+         */
+        $split = function( $x, $y, $iter_x, $iter_y, callable $callback ) use( &$split ) {
+                if( $iter_x <= 0 ){
+                        if( $iter_y <= 0 ) {
+                                $str .= "<div id=\"grid-" . $x . $y . "\">\n";
+                                $str .= $callback( $x, $y ); // Callback with coordinate argument
+                                $str .= "</div>\n";
+                        }
+                        else {
+                                $str .= "<div class=\"phi-y\">\n";
+                                $str .= $split( $x, $y - pow(2, ($iter_y - 1)), $iter_x, $iter_y - 1, $callback );
+                                $str .= "</div>\n<div class=\"one-y\">\n";
+                                $str .= $split( $x, $y, $iter_x, $iter_y - 1, $callback );
+                                $str .= "</div>\n";
+                        }
+                }
+                else {
+                        $str .= "<div class=\"one-x\">\n";
+                        $str .= $split( $x - pow(2, ($iter_x - 1)), $y, $iter_x - 1, $iter_y, $callback );
+                        $str .= "</div>\n<div class=\"phi-x\">\n";
+                        $str .= $split( $x, $y, $iter_x - 1, $iter_y, $callback );
+                        $str .= "</div>\n";
+                }
+                return $str;
+        };
+        
+        return $split( pow(2, $iter_x), pow(2, $iter_y), $iter_x, $iter_y, $callback );
+}

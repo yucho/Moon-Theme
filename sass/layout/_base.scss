@@ -1,0 +1,115 @@
+/*
+Theme Name  : Moon
+Layout      : Base
+Created on  : 2014/12/23, 22:51:55
+Author      : Yucho
+
+This partial sass contains common property values for index.php and page.php.
+For front-page.php and home.php, _front-page.scss overrides display & box models.
+*/
+
+// Fills the viewport and expands when contents overflow.
+.site {
+        position: relative;
+        z-index: 1;
+        min-width: 100%;
+        min-height: 100%;
+        //min-height: $size__site-height-min;
+        height: auto !important;
+        height: 100%;
+        margin: 0 auto 0; // We will hide the footer.
+}
+
+// Micro Clearfix by Nicolas Gallagher
+.site:before,
+.site:after {
+  content:"";
+  display:table;
+}
+.site:after {
+  clear:both;
+}
+.site {
+  zoom:1; /* For IE 6/7 (trigger hasLayout) */
+}
+
+// Nicolas Gallagher's background color columns
+.site:before {
+        content: " ";
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        display: block; // Override clearfix table display
+        width: $size__site-header;
+        height: 100%;
+        min-width: $size__site-header-min;
+        background: $color__background-menu;
+}
+
+// Header and all its childs get out of the document flow.
+.site-header {
+        position: absolute;
+        display: block;
+        width: $size__site-header;
+        height: 100%;
+        min-width: $size__site-header-min;
+        min-height: $size__site-height-min;
+        max-height: $size__site-height-max;
+        background: $color__background-menu; // For window height < min-height
+}
+
+.site-branding {
+        position: relative;
+        top: 0;
+        right: 0;
+        display: block;
+        height: $size__site-branding-title-art;
+}
+
+.main-navigation {
+        position: relative;
+        top: 0;
+        right: 0;
+        display: block;
+        min-height: $size__site-height-min - $size__site-branding-title-art;
+        max-height: $size__site-height-max - $size__site-branding-title-art;
+}
+
+// Main content remains within the document flow.
+.site-content {
+        position: relative;
+        left: $size__site-header;
+        width: $size__site-main;
+        min-width: $size__site-main-min;
+}
+
+// When the viewport is too small, avoid overlap with header.
+@media screen and ( max-width: $size__site-header-min / $ratio__site-header ) {
+        .site-content {
+                left: $size__site-header-min;
+        }
+}
+
+.content-area {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        max-width: $size__site-main-max;
+	margin: 0;
+        text-align: center;
+}
+
+.site-main {
+	display: inline-block;
+        width: 70.8%; // 100% - 2 * ( 38.2% ^ 2 )
+        min-width: $size__site-main-min * 0.708;
+	margin: 0;
+        text-align: left;
+}
+
+.site-footer {
+        display: none; // Hide footer. Only keep it in the markups semantically.
+	clear: both;
+	width: 100%;
+}

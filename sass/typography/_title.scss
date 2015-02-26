@@ -1,0 +1,58 @@
+/* 
+Created on : 2014/12/19, 17:49:00
+Author     : Yucho
+*/
+
+.site-branding { position: relative; }
+
+.site-title {
+        position: absolute;
+        right: 0;
+        width: $size__site-header-min;
+        font-family: 'Montserrat', sans-serif; // Google font
+        font-size: 36px;
+        color: $color__text-title;
+        text-decoration: none;
+        a {
+                color: $color__text-title;
+                text-decoration: none;
+
+                &:visited {
+                        color: $color__text-title;
+                        text-decoration: none;
+                }
+                &:hover,
+                &:focus,
+                &:active {
+                        color: $color__text-title;
+                        text-decoration: none;
+                }
+
+
+                .title-top {
+                        position: absolute;
+                        top: 80px;
+                        left: 80px;
+                        display: block;
+                        font-size: 30px;
+                }
+                .title-middle {
+                        position: absolute;
+                        top: 104px;
+                        left: 50px;
+                        display: block;
+                }
+                .title-bottom {
+                        position: absolute;
+                        top: 140px;
+                        left: 158px;
+                        display: block;
+                        font-size: 28px;
+                }
+
+        }
+}
+
+.site-description {
+        display: none;
+}

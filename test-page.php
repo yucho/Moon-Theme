@@ -1,19 +1,16 @@
 <?php
 /**
- * The home page template file.
- *
- * This is the home page template file in a WordPress theme.
- * It is used to display a main page when nothing more specific matches a query.
- * E.g., it puts together the home page when front page setting is missing.
- * Learn more: http://codex.wordpress.org/Template_Hierarchy
+ * Template Name: Test Page
+ * 
+ * An experimental page template for home.php
  *
  * @package Moon
  */
 
-get_header( 'front' ); ?>
+get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+	<div id="primary" class="content-area-test">
+		<main id="main" class="site-main-test" role="main">
 
 		<?php if ( have_posts() ) : ?>
 
@@ -41,4 +38,5 @@ get_header( 'front' ); ?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
+<?php get_sidebar(); ?>
 <?php get_footer(); ?>

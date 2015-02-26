@@ -1,0 +1,64 @@
+/*
+Theme Name  : Moon
+Layout      : About-Author
+Created on  : 2014/12/23, 22:52:24
+Author      : Yucho
+
+This partial sass contains property values to override _base.scss for
+about-author.php.
+*/
+
+
+.about-author {
+        // Nicolas Gallagher's background color column covers all the page now
+        &.site:before {
+                width: 100%;
+        }
+
+        .site-header {
+                display: none;
+        }
+
+        .site-content {
+                position: static; // Reset _base.scss
+                width: 100%;
+                min-width: $size__site-width-min;
+                max-width: $size__site-width-max;
+                margin: 0 auto;
+                padding-top: 2em;
+                background: $color__background-menu;
+                color: $color__text-menu;
+        }
+        
+        .site-main {
+                position: relative;
+                display: block;
+                width: 70.8%; // 100% - 2 * ( 38.2% ^ 2 )
+                margin: 0 auto;
+        }
+        
+        // Hide the page title for about-author page.
+        .entry-header {
+                display: none;
+        }
+        
+        // Quick and dirty typography styling.
+        ul {
+                margin-bottom: 0.5em;
+                list-style: none;
+        }
+        
+        // Links are not colored on this page.
+        a {
+	color: $color__text-menu;
+
+	&:visited {
+		color: $color__text-menu;
+	}
+	&:hover,
+	&:focus,
+	&:active {
+		color: $color__text-menu;
+	}
+}
+} // .about-author

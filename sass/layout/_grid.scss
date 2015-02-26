@@ -1,0 +1,170 @@
+.grid-wrapper {
+        width: 100%;
+        height: 100%;
+        background: red; // Never be visible
+}
+
+/**
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    contenteditable attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that are clearfixed.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+.grid-wrapper:before,
+.grid-wrapper:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.grid-wrapper:after {
+    clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.grid-wrapper {
+    *zoom: 1;
+}
+
+.grid-common {
+        float:left;
+        background: white;
+        outline: 1px solid $color__golden-grid;
+}
+
+.one-x {
+        width: 38.2%;
+        height: 100%;
+        @extend .grid-common;
+}
+.phi-x {
+        width: 61.8%;
+        height: 100%;
+        @extend .grid-common;
+}
+.one-y {
+        width: 100%;
+        height: 38.2%;
+        @extend .grid-common;
+}
+.phi-y {
+        width: 100%;
+        height: 61.8%; 
+        @extend .grid-common;
+}
+
+div[id^='grid-'] {
+        height: 100%;
+}
+
+[id^='grid-1'], [id^='grid-2'], [id^='grid-3'], [id^='grid-4'] {
+        color: $color__grid-text-menu;
+        background: $color__grid-background-menu;
+}
+
+.grid-navigation {
+        position: relative; // Serve as positioned wrapper.
+        height: 100%; // nav-block completely fills up the parent.
+        white-space: nowrap; // Force menu items to have single lines.
+
+	ul {
+                outline: 1px orange dashed;
+                position: absolute;
+                z-index: 10;
+                right: 0;
+                bottom: 0;
+		margin: 0;
+		padding: 0;
+                padding-right: 1em;
+                text-align: right;
+		list-style: none;
+                overflow: visible; // In case browser doesn't support z-index.
+	}
+	li {
+                display: list-item;
+                height: 2em;
+                color: $color__grid-text-menu;
+                outline: 1px red dashed;
+		a:hover {
+                        text-decoration: underline;
+		}
+                ul {
+                        outline: 1px blue dashed;
+                        position: absolute;
+                        z-index: 11;
+                        left: 110%;
+                        color: $color__grid-background-menu;
+                        text-align: left;
+                        a {
+                                color: $color__grid-background-menu;
+                        }
+                }
+	}
+	a {
+                display: inline-block; // Link fills content width and 100% parent height.
+                height: 100%;
+                color: $color__grid-text-menu;
+		text-decoration: none;
+	}
+
+	.current_page_item > a,
+	.current-menu-item > a,
+	.current_page_ancestor > a {
+	}
+}
+
+#grid-83 {
+        position: relative;
+}
+
+.grid-debug {
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+}
+
+#grid-71 {
+        ul {
+                position: absolute;
+                list-style: none;
+        }
+}
+
+/*
+ * Style Golden Grid 2
+ */
+#grid2-1, #grid2-2 {
+        background: $color__grid-background-menu;
+}
+
+.grid-navigation-2 {
+        display: block;
+        min-height: 61.8%;
+}
+
+#grid-menu-t {
+        display: table;
+        width: 100%;
+        height: 100%;
+}
+
+#grid-menu-tr {
+        display: table-row;
+}
+
+#grid-menu-td {
+        display: table-cell;
+        text-align: right;
+        vertical-align: bottom;
+}
+
+/**
+ * Test for test page template
+ */

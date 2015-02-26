@@ -40,9 +40,10 @@ function moon_setup() {
 	 */
 	//add_theme_support( 'post-thumbnails' );
 
-	// This theme uses wp_nav_menu() in one location.
+	// This theme uses wp_nav_menu() in multiple locations.
 	register_nav_menus( array(
 		'primary' => __( 'Primary Menu', 'moon' ),
+                'grid-menu' => __( 'Grid Menu', 'moon' ),
 	) );
 
 	/*
@@ -89,9 +90,44 @@ function moon_widgets_init() {
 add_action( 'widgets_init', 'moon_widgets_init' );
 
 /**
+ * Register scripts and styles.
+ */
+function moon_register_scripts() {
+        // Register html5shiv JS workaround.
+        wp_register_script( 'html5shiv', 'http://html5shiv.googlecode.com/svn/trunk/html5.js' );
+
+        // Register Superfish menu plugin.
+        wp_register_style( 'superfish', get_template_directory_uri() . '/css/superfish/superfish.css', array(), '1.7.4' );
+        wp_register_style( 'superfish-vertical', get_template_directory_uri() . '/css/superfish/superfish-vertical.css', array(), '1.7.4' );
+        wp_register_script( 'superfish', get_template_directory_uri() . '/js/superfish/superfish.js', array( 'jquery' ), '1.7.4' );
+        wp_register_script( 'hoverintent', get_template_directory_uri() . '/js/superfish/hoverIntent.js', array( 'jquery' ), '1.7.4' );
+        
+        // Register Three.js WebGL.
+        wp_register_script( 'three', get_template_directory_uri() . '/js/three.min.js', array(), '1.7.4');
+}
+add_action( 'wp_enqueue_scripts', 'moon_register_scripts' );
+
+/**
  * Enqueue scripts and styles.
  */
 function moon_scripts() {
+        // html5shiv before CSS if lt IE 8
+        if( is_ie() && get_browser_version() <= 8 ) {
+                wp_enqueue_script( 'html5shiv' );
+        }
+        
+        // Superfish menu plugin
+        wp_enqueue_style( 'superfish' );
+        wp_enqueue_style( 'superfish-vertical' );
+        wp_enqueue_script( 'superfish' );
+        wp_enqueue_script( 'hoverintent' );
+        
+        // Three.js WebGL
+        wp_enqueue_script( 'three' );
+        
+        // CSS overrides for third party CSS files
+        wp_enqueue_style('overrides', get_template_directory_uri() . '/css/overrides.css');
+
 	wp_enqueue_style( 'moon-style', get_stylesheet_uri() );
 
 	wp_enqueue_script( 'moon-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
@@ -103,6 +139,15 @@ function moon_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'moon_scripts' );
+
+/**
+ * Load web fonts.
+ */
+function load_fonts() {
+        wp_register_style('googlefonts', 'http://fonts.googleapis.com/css?family=Montserrat:400,700');
+        wp_enqueue_style( 'googlefonts');
+}
+add_action('wp_print_styles', 'load_fonts');
 
 /**
  * Implement the Custom Header feature.
@@ -133,3 +178,40 @@ require get_template_directory() . '/inc/jetpack.php';
  * Stylizer that prints css override and governs default values.
  */
 require get_template_directory() . '/inc/stylizer.php';
+
+/**
+ * Add TGM_Plugin_Activation action.
+ */
+require get_template_directory() . '/inc/tgm-plugin-activation.php';
+
+/**
+ * Custom walker nav menu that adds more CSS classes.
+ */
+require get_template_directory() . '/inc/moon-walker-nav-menu.php';
+
+/**
+ * Temporarily add shortcodes. Create another file if too many.
+ */
+function moon_image_shortcode( $atts ) {
+        $a = shortcode_atts( array(
+                'src' => null, 'width' => null, 'height' => null, 'style' => null
+        ), $atts);
+        
+        if( is_null($a['src']) )
+            return '';
+        else
+        {
+            $str = '<img src="' . get_template_directory_uri() . '/img/' . esc_attr($a['src']) . '"';
+            if( !is_null($a['width']) ) { $str .= ' width="' . $a['width'] . '"'; }
+            if( !is_null($a['height']) ) { $str .= ' height="' . $a['height'] . '"'; }
+            if( !is_null($a['style']) ) { $str .= ' style="' . $a['style'] . '"'; }
+            $str .= '>';
+            return $str;
+        }
+}
+add_shortcode( 'moon_image', 'moon_image_shortcode' );
+
+function home_url_shortcode() {
+        return get_home_url();
+}
+add_shortcode( 'home_url', 'home_url_shortcode' );

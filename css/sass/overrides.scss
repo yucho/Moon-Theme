@@ -1,0 +1,76 @@
+/* 
+Created on : 2014/12/10, 0:43:29
+Author     : Yucho Ho <yuchoho.com>
+
+This file defines overridden values for third-party CSS files so that the
+original files need not be modified.
+*/
+@import "../../sass/variables-site/variables-site";
+
+// Override Superfish for front page template.
+.main-menu-item { text-align: right }
+.sub-menu-item  { text-align: left  }
+.primary-menu.sf-menu {
+        li.menu-item-even {
+                a { color: $color__grid-text-menu }
+                &:hover {
+                        color: $color__grid-text-menu; // IE: fix underline color
+                        background: $color__grid-background-menu;
+                        text-decoration: underline;
+                }
+                background: $color__grid-background-menu;
+        }
+        li.menu-item-odd {
+                a { color: $color__grid-background-menu }
+                &:hover {
+                        color: $color__grid-background-menu; // IE: fix underline color
+                        background: $color__background-body;
+                        text-decoration: underline;
+                }
+                background: $color__background-body;
+        }
+        // IE: kill underline decoration on menu icon hover
+        span[class^=dashicon-menu]:after { text-decoration: none }
+        
+        a {
+                border: none;
+        }
+}
+
+// Override Superfish for Golden Grid 2 template page
+.grid-menu.sf-menu {
+        li.menu-item-even {
+                a { color: $color__grid-text-menu }
+                &:hover {
+                        color: $color__grid-text-menu; // IE: fix underline color
+                        background: $color__grid-background-menu;
+                        text-decoration: underline;
+                }
+                background: $color__grid-background-menu;
+        }
+        li.menu-item-odd {
+                a { color: $color__grid-background-menu }
+                &:hover {
+                        color: $color__grid-background-menu; // IE: fix underline color
+                        background: $color__background-body;
+                        text-decoration: underline;
+                }
+                background: $color__background-body;
+        }
+        // IE: kill underline decoration on menu icon hover
+        span[class^=dashicon-menu]:after { text-decoration: none }
+        
+        a {
+                border: none;
+        }
+        
+        text-align: right;
+}
+
+.sf-arrows {
+        //padding-right: 2.5em;
+        //border: 2px dashed blue;
+        //.sf-with-ul { padding-right: 0 }
+}
+
+/*# sourceMappingURL=overrides.css.map */

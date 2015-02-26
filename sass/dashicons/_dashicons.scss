@@ -4,10 +4,12 @@
         -webkit-font-smoothing: antialiased;
         font: normal 20px/1 'dashicons';
         vertical-align: middle;
+        padding-left: 4px;
 }
 
-.dashicon-menu1:after { @include dashicon-content($icon__menu-item1) }
-.dashicon-menu2:after { @include dashicon-content($icon__menu-item2) }
-.dashicon-menu3:after { @include dashicon-content($icon__menu-item3) }
-.dashicon-menu4:after { @include dashicon-content($icon__menu-item4) }
-.dashicon-menu5:after { @include dashicon-content($icon__menu-item5) }
+.dashicon-menu-home:after { @include dashicon-content($icon__menu-home) }
+.dashicon-menu-sitemap:after { @include dashicon-content($icon__menu-sitemap) }
+.dashicon-menu-art:after { @include dashicon-content($icon__menu-art) }
+.dashicon-menu-music:after { @include dashicon-content($icon__menu-music) }
+.dashicon-menu-blog:after { @include dashicon-content($icon__menu-blog) }
+.dashicon-menu-software:after { @include dashicon-content($icon__menu-software) }
