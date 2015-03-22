@@ -52,8 +52,8 @@ function moon_post_nav() {
 		<h1 class="screen-reader-text"><?php _e( 'Post navigation', 'moon' ); ?></h1>
 		<div class="nav-links">
 			<?php
-				previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="meta-nav">&larr;</span>&nbsp;%title', 'Previous post link', 'moon' ) );
-				next_post_link(     '<div class="nav-next">%link</div>',     _x( '%title&nbsp;<span class="meta-nav">&rarr;</span>', 'Next post link',     'moon' ) );
+				previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="meta-nav">&larr;</span><div class="wrap-title-nav-previous"><span class="title-nav-previous">%title</span></div>', 'Previous post link', 'moon' ) );
+				next_post_link(     '<div class="nav-next">%link</div>',     _x( '<span class="meta-nav">&rarr;</span><div class="wrap-title-nav-next"><span class="title-nav-next">%title</span></div>', 'Next post link',     'moon' ) );
 			?>
 		</div><!-- .nav-links -->
 	</nav><!-- .navigation -->
@@ -78,17 +78,12 @@ function moon_posted_on() {
 		esc_html( get_the_modified_date() )
 	);
 
-	$posted_on = sprintf(
-		_x( 'Posted on %s', 'post date', 'moon' ),
-		'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
-	);
-
 	$byline = sprintf(
 		_x( 'by %s', 'post author', 'moon' ),
-		'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
+		'<span class="author vcard">' . esc_html( get_the_author() ) . '</span>'
 	);
 
-	echo '<span class="posted-on">' . $posted_on . '</span><span class="byline"> ' . $byline . '</span>';
+	echo '<span class="posted-on">' . $time_string . '</span><span class="byline"> ' . $byline . '</span>';
 
 }
 endif;

@@ -10,7 +10,7 @@
  * @package Moon
  */
 
-get_header( 'front' ); ?>
+get_header( 'widenav' ); ?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">

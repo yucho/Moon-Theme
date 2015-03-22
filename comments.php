@@ -20,8 +20,6 @@ if ( post_password_required() ) {
 
 <div id="comments" class="comments-area">
 
-	<?php // You can start editing here -- including this comment! ?>
-
 	<?php if ( have_comments() ) : ?>
 		<h2 class="comments-title">
 			<?php
@@ -61,7 +59,7 @@ if ( post_password_required() ) {
 		// If comments are closed and there are comments, let's leave a little note, shall we?
 		if ( ! comments_open() && '0' != get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) :
 	?>
-		<p class="no-comments"><?php _e( 'Comments are closed.', 'moon' ); ?></p>
+		<p class="no-comments"><?php _e( 'Non-FB comments are closed.', 'moon' ); ?></p>
 	<?php endif; ?>
 
 	<?php comment_form(); ?>

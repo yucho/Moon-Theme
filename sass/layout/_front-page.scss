@@ -8,7 +8,7 @@ This partial sass contains property values to override _base.scss for
 front-page.php and home.php.
 */
 
-.front {
+.widenav {
         // Nicolas Gallagher's background color column has wider width on front page.
         &.site:before {
                 width: $size__site-header-front;
@@ -39,10 +39,15 @@ front-page.php and home.php.
         .site-main {
                 min-width: $size__site-main-front-min * 0.708;
         }
+        
+        .entry-header-page {
+                // If front page is set to a page, hide the page title.
+                display: none;
+        }
 } // .front
 
 .front-canvas {
         display: block;
-        margin: 0 auto;
+        margin: 0 auto 1em;
         border: 1px solid black;
 }

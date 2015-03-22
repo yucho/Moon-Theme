@@ -215,3 +215,113 @@ function home_url_shortcode() {
         return get_home_url();
 }
 add_shortcode( 'home_url', 'home_url_shortcode' );
+
+/**
+ * Prettify attachment permalinks with new rules.
+ */
+function moon_attachment_link( $link, $post_id ){
+        $post = get_post( $post_id );
+        return home_url( '/images/' . $post->post_name );
+}
+add_filter( 'attachment_link', 'moon_attachment_link', 20, 2 );
+
+/**
+ * Print the attached image with a link to the next attached image.
+ */
+function moon_the_attached_image() {
+	$post                = get_post();
+	/**
+	 * Retrieve medium size attachment image and URL.
+	 */
+	$attachment_size     = "medium";
+	$attachment_url = wp_get_attachment_url();
+
+	printf( '<a href="%1$s" rel="attachment">%2$s</a>',
+		esc_url( $attachment_url ),
+		wp_get_attachment_image( $post->ID, $attachment_size )
+	);
+}
+
+/**
+ * Add custom field to gallery popup.
+ */
+function moon_attachment_fields_to_edit( $form_fields, $post ) {
+        /*
+         * $form_fields is a an array of fields to include in the attachment form.
+         * $post is nothing but attachment record in the database.
+         * $post->post_type == 'attachment'
+         * attachments are considered as posts in WordPress. So value of post_type
+         * in wp_posts table will be attachment.
+         * input type="text" name/id="attachments[$attachment->ID][custom1]" 
+         */
+        $form_fields[ "finisheddate" ] = array(
+                "label" => __( "Finished Date" ),
+                "input" => "text", // default value
+                "value" => get_post_meta( $post->ID, "_finisheddate", true ),
+                //"helps" => __( "Help string." ),
+        );
+        return $form_fields;
+}
+add_filter( "attachment_fields_to_edit", "moon_attachment_fields_to_edit", null, 2 );
+
+function moon_attachment_fields_to_save( $post, $attachment ) {
+        /*
+         * $attachment part of the form $_POST ($_POST[attachments][postID])
+         * $post['post_type'] == 'attachment'
+         */
+        if( isset( $attachment['finisheddate'] ) ){
+                // update_post_meta(postID, meta_key, meta_value);
+                update_post_meta( $post['ID'], '_finisheddate', $attachment['finisheddate'] );
+        }
+        return $post;
+}
+add_filter( "attachment_fields_to_save", "moon_attachment_fields_to_save", null , 2 );
+
+/**
+ * Display navigation to next/previous image when applicable.
+ */
+function moon_image_nav() {
+	$post = get_post();
+	$attachments = array_values( get_children( array( 'post_parent' => $post->post_parent, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => 'ASC', 'orderby' => 'menu_order ID' ) ) );
+
+	foreach ( $attachments as $k => $attachment ) {
+		if ( $attachment->ID == $post->ID ) {
+			break;
+		}
+	}
+
+	$link = ''; $text ='';
+	$attachment_id = 0;
+        
+        /*
+         * Don't print empty markup if there's nowhere to navigate.
+         */
+        if (! $attachments ) {
+                return;
+        }
+        $previous = isset( $attachments[ $k - 1 ] );
+        $next = isset( $attachments[ $k + 1 ] );
+        if( ! $previous && ! $next ) {
+                return;
+        }
+
+        echo '<nav id="image-navigation" class="navigation image-navigation">';
+	echo '<div class="nav-links">';
+
+        if( $previous ) {
+                $attachment_id = $attachments[ $k - 1 ]->ID;
+                $text = '<span class="meta-nav">&larr;</span><div class="wrap-title-nav-previous"><span class="title-nav-previous">'. $attachments[ $k - 1 ]->post_title . '</span></div>';
+                $link = wp_get_attachment_link( $attachment_id, 'thumbnail', true, false, $text );
+                echo '<div class="previous-image nav-previous">' . $link . '</div>';
+        }
+
+        if( $next ) {
+                $attachment_id = $attachments[ $k + 1 ]->ID;
+                $text = '<span class="meta-nav">&rarr;</span><div class="wrap-title-nav-next"><span class="title-nav-next">'. $attachments[ $k + 1 ]->post_title . '</span></div>';
+                $link = wp_get_attachment_link( $attachment_id, 'thumbnail', true, false, $text );
+                echo '<div class="next-image nav-next">' . $link . '</div>';
+        }
+        
+        echo '</div>';
+        echo '</nav>';
+}

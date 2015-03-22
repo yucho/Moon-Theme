@@ -19,7 +19,7 @@
 </head>
 
 <body <?php body_class(); ?>>
-<div id="page" class="hfeed site front">
+<div id="page" class="hfeed site widenav">
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'moon' ); ?></a>
 
 	<header id="masthead" class="site-header" role="banner">

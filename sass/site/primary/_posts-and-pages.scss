@@ -16,10 +16,29 @@
 	display: inline;
 }
 
+.entry-header {
+        h1 {
+                // Override typography.
+                margin-bottom: 0.2em;
+        }
+}
+
+.entry-meta {
+        color: $color__text-sub;
+}
+
+.entry-meta-single {
+        text-align: right;
+}
+
 .page-content,
 .entry-content,
 .entry-summary {
 	margin: 1.5em 0 0;
+}
+
+.entry-content-excerpt {
+        margin-top: 0;
 }
 
 .page-links {

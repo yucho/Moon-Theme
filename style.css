@@ -153,11 +153,14 @@ button,
 input,
 select,
 textarea {
-  color: #404040;
+  color: #202020;
   font-family: sans-serif;
   font-size: 16px;
   font-size: 1.6rem;
   line-height: 1.5; }
+
+time {
+  color: #808080; }
 
 h1 {
   font-size: 24px;
@@ -435,11 +438,13 @@ textarea {
 5.1 Links
 --------------------------------------------------------------*/
 a {
-  color: royalblue; }
+  color: #29a329;
+  text-decoration: none; }
   a:visited {
-    color: purple; }
+    color: #29a329; }
   a:hover, a:focus, a:active {
-    color: midnightblue; }
+    color: #29a329;
+    text-decoration: underline; }
 
 /*--------------------------------------------------------------
 5.2 Menus
@@ -490,29 +495,56 @@ a {
 		display: none;
 	}
 }
-
+*/
 .site-main .comment-navigation,
 .site-main .paging-navigation,
-.site-main .post-navigation {
-	margin: 0 0 1.5em;
-	overflow: hidden;
-}
+.site-main .post-navigation,
+.site-main .image-navigation {
+  margin: 0 0 1.5em;
+  overflow: hidden; }
 
 .comment-navigation .nav-previous,
 .paging-navigation .nav-previous,
-.post-navigation .nav-previous {
-	float: left;
-	width: 50%;
-}
+.post-navigation .nav-previous,
+.image-navigation .nav-previous {
+  float: left;
+  width: 50%; }
 
 .comment-navigation .nav-next,
 .paging-navigation .nav-next,
-.post-navigation .nav-next {
-	float: right;
-	text-align: right;
-	width: 50%;
-}
-*/
+.post-navigation .nav-next,
+.image-navigation .nav-next {
+  float: right;
+  text-align: right;
+  width: 50%; }
+
+.comment-navigation .nav-previous .meta-nav,
+.paging-navigation .nav-previous .meta-nav,
+.post-navigation .nav-previous .meta-nav,
+.image-navigation .nav-previous .meta-nav {
+  float: left;
+  width: 1.5em; }
+
+.comment-navigation .nav-next .meta-nav,
+.paging-navigation .nav-next .meta-nav,
+.post-navigation .nav-next .meta-nav,
+.image-navigation .nav-next .meta-nav {
+  float: right;
+  width: 1.5em; }
+
+.wrap-title-nav-previous {
+  margin-left: 1.5em; }
+
+.wrap-title-nav-next {
+  margin-right: 1.5em; }
+
+.title-nav-previous, .title-nav-next {
+  display: block;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  word-wrap: normal !important; }
+
 /*--------------------------------------------------------------
 6.0 Accessibility
 --------------------------------------------------------------*/
@@ -609,7 +641,8 @@ Created on  : 2014/12/23, 22:51:55
 Author      : Yucho
 
 This partial sass contains common property values for index.php and page.php.
-For front-page.php and home.php, _front-page.scss overrides display & box models.
+For front-page.php and home.php, _front-page.scss overrides the properties
+defined in this file.
 */
 .site {
   position: relative;
@@ -684,13 +717,11 @@ For front-page.php and home.php, _front-page.scss overrides display & box models
   width: 100%;
   max-width: 717.824px;
   margin: 0;
-  text-align: center; }
+  text-align: left; }
 
 .site-main {
-  display: inline-block;
-  width: 70.8%;
-  min-width: 349.62739px;
-  margin: 0;
+  display: block;
+  margin: 2em 1em 2em 3em;
   text-align: left; }
 
 .site-footer {
@@ -707,14 +738,14 @@ Author      : Yucho
 This partial sass contains property values to override _base.scss for
 front-page.php and home.php.
 */
-.front.site:before {
+.widenav.site:before {
   width: 38.2%;
   min-width: 305.6px; }
-.front .site-header {
+.widenav .site-header {
   width: 38.2%;
   height: 100%;
   min-width: 305.6px; }
-.front .site-content {
+.widenav .site-content {
   position: relative;
   left: 38.2%;
   width: 61.8%;
@@ -722,14 +753,16 @@ front-page.php and home.php.
   max-width: 632.832px;
   padding-top: 2em; }
 @media screen and (max-width: 799px) {
-  .front .site-content {
+  .widenav .site-content {
     left: 305.6px; } }
-.front .site-main {
+.widenav .site-main {
   min-width: 350.0352px; }
+.widenav .entry-header-page {
+  display: none; }
 
 .front-canvas {
   display: block;
-  margin: 0 auto;
+  margin: 0 auto 1em;
   border: 1px solid black; }
 
 /*
@@ -788,10 +821,22 @@ about-author.php.
 .group-blog .byline {
   display: inline; }
 
+.entry-header h1 {
+  margin-bottom: 0.2em; }
+
+.entry-meta {
+  color: #808080; }
+
+.entry-meta-single {
+  text-align: right; }
+
 .page-content,
 .entry-content,
 .entry-summary {
   margin: 1.5em 0 0; }
+
+.entry-content-excerpt {
+  margin-top: 0; }
 
 .page-links {
   clear: both;
@@ -842,6 +887,10 @@ embed,
 iframe,
 object {
   max-width: 100%; }
+
+.attachment-moon img {
+  display: block;
+  margin: 0 auto; }
 
 /*--------------------------------------------------------------
 12.1 Captions

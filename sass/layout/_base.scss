@@ -5,7 +5,8 @@ Created on  : 2014/12/23, 22:51:55
 Author      : Yucho
 
 This partial sass contains common property values for index.php and page.php.
-For front-page.php and home.php, _front-page.scss overrides display & box models.
+For front-page.php and home.php, _front-page.scss overrides the properties
+defined in this file.
 */
 
 // Fills the viewport and expands when contents overflow.
@@ -97,14 +98,14 @@ For front-page.php and home.php, _front-page.scss overrides display & box models
         width: 100%;
         max-width: $size__site-main-max;
 	margin: 0;
-        text-align: center;
+        text-align: left;
 }
 
 .site-main {
-	display: inline-block;
-        width: 70.8%; // 100% - 2 * ( 38.2% ^ 2 )
-        min-width: $size__site-main-min * 0.708;
-	margin: 0;
+	display: block;
+        //width: 70.8%; // 100% - 2 * ( 38.2% ^ 2 )
+        //min-width: $size__site-main-min * 0.708;
+	margin: 2em 1em 2em 3em;
         text-align: left;
 }
 
